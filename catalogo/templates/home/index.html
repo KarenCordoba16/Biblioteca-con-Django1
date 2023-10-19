@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+    <h1 class="my-3">Inicio</h1>
+    <hr>
+
+    {% if request.user.is_authenticated %}
+        <h4>Hola {{ user.username | upper }}, ¡Bienvenido(a)!</h4>
+    {% endif %}
+{% endblock %}
