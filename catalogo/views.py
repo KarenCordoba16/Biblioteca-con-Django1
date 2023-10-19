@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return HttpResponse('<h1>¡Hola mundo!</h1>')
@@ -27,3 +28,9 @@ def register(request):
             return redirect('home')
         else:
             return render(request, 'registration/register.html', {"form":form})
+        
+@login_required
+def home(request):
+    context = {}
+
+    return render(request, 'home/index.html', context)
