@@ -10,7 +10,7 @@ def home(request):
 
 def register(request):
     if request.method == 'GET':
-        return render(request, 'registrarion/register.html', {'form': CustomUserCreationForm})
+        return render(request, 'registration/register.html', {'form': CustomUserCreationForm})
     
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
