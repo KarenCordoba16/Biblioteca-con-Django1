@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
-from catalogo.views import register
+from catalogo.views import register, login_required
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/catalogo/')),
@@ -25,4 +27,8 @@ urlpatterns = [
     path('catalogo/', include('catalogo.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', register, name='register'),
+    path('accounts/login/', login_required, name='login'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

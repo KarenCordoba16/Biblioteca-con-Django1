@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm
@@ -13,14 +12,14 @@ def register(request):
         return render(request, 'registration/register.html', {'form': CustomUserCreationForm})
     
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request.FILES)
 
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
 
             user = authenticate(
-                username = form.cleaned_data['username'],
+                email = form.cleaned_data['email'],
                 password = form.cleaned_data['password']
             )
             login(request, user)

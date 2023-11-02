@@ -28,6 +28,8 @@
                             data-bs-toogle="dropdown"
                             aria-expanded="false"
                         >
+                            <img src="{{ user.get_image }}" alt="{{ user.username }}" height="25px" width="25px">
+                            
                             {{ user.username | capfirst }}
                         </a>
                         <ul class="dropdown-menu">
